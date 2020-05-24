@@ -1,0 +1,73 @@
+﻿@*@{
+        ViewData["Title"] = "Home Page";
+    }
+
+    <div class="text-center">
+        <h1 class="display-4">Irrigation</h1>
+        <p>ASP.NET Core</p>
+    </div>*@
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveNW">NortWest</button>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveN">North</button>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveNE">NorthEast</button>
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveW">West</button>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveSW">SouthWest</button>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveSE">SouthEast</button>
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-warning btn-block btnIrrigation" id="pumpWell">Cerpadlo</button>
+            </div>
+            <div class="col-sm">
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList"></ul>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/EndUserSignalR.js"></script>
