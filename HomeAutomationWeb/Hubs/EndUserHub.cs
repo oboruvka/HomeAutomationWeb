@@ -14,9 +14,16 @@
         {
             this.irrigationService = irrigationService;
         }
+        
         public async Task IrrigationButtonClicked(string btnName)
         {
             await irrigationService.BtnClicked(btnName);
         }
+
+        public async Task WebStarted()
+        {
+            await irrigationService.WebStarted();
+        }
+
     }    
 }

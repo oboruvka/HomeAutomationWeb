@@ -21,6 +21,7 @@ namespace HomeAutomationWeb
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("https://0.0.0.0:14148");
                 });
     }
 }

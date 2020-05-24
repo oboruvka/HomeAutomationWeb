@@ -1,10 +1,15 @@
 ﻿"use strict";
 
+//NOTE:
+//button names must be the same as properties on irrigationStatus
+
+//connect to SignalR Hub
 var connection = new signalR.HubConnectionBuilder().withUrl("/endUserHub").build();
 
-//Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
+//Disable all firstly
+Array.from(document.getElementsByClassName("btnIrrigation")).forEach(btn => btn.disabled = true);
 
+//react on message with status from signalR
 connection.on("IrrigationStatusUpdate", function (status) {
     console.log(status);
     var irrigationStatus = JSON.parse(status);
@@ -21,24 +26,29 @@ connection.on("IrrigationStatusUpdate", function (status) {
     }
 });
 
+//start connection and if successfull, enable buttons
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;//TODO enable-disable all
+    informWebStarted();
+    Array.from(document.getElementsByClassName("btnIrrigation")).forEach(btn => btn.disabled = false);
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-//document.getElementById("pump").addEventListener("click", function (event) { setBtn("btnValve") });
+//handle irrigation buttons click
+Array.from(document.getElementsByClassName("btnIrrigation")).forEach(btn => btn.addEventListener("click", function (event) { handleIrrigationbutton(event) }));
+document.getElementById("shutDown").addEventListener("click", function (event) { handleIrrigationbutton(event) });
 
-Array.from(document.getElementsByClassName("btnIrrigation")).forEach(valve => valve.addEventListener("click", function (event) {
-    btnClicked(event);
-}))
+function handleIrrigationbutton(event) {
+    connection.invoke("IrrigationButtonClicked", event.target.id) //sends name of button to hub method
+        .catch(function (err) {
+            return console.error(err.toString());
+        });
+}
 
-function setBtnsAsStatus(className, irrigationStatus) {
-    Array.from(document.getElementsByClassName(className)).forEach(el => el.classList.replace("btn-outline-warning", "btn-warning"))    
-};
+function informWebStarted() {
+    connection.invoke("WebStarted")
+        .catch(function (err) {
+            return console.error(err.toString());
+        });
+}
 
-function btnClicked(event) {
-    connection.invoke("IrrigationButtonClicked", event.target.id).catch(function (err) {
-        return console.error(err.toString());
-    });
-};

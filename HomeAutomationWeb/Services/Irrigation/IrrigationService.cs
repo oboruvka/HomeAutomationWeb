@@ -13,6 +13,7 @@ namespace HomeAutomationWeb.Services.Irrigation
         private readonly IHubContext<EndUserHub> hubContext;
         private readonly Type irrigationStatusType;
         private IrrigationStatus status = new IrrigationStatus();
+        private const string shutDownButtonName = "shutDown";
 
         public IrrigationService(IHubContext<EndUserHub> hubContext)
         {
@@ -20,18 +21,27 @@ namespace HomeAutomationWeb.Services.Irrigation
             irrigationStatusType = typeof(IrrigationStatus);
 
         }
+
+        public async Task WebStarted() => await SendStatusToAllClients();
+
         public async Task BtnClicked(string btnName)
         {
             //TODO logic ... now just return statuses to client
             UpdateStatus(btnName);
-            await Task.Delay(1000);
-            await hubContext.Clients.All.SendAsync("IrrigationStatusUpdate", JsonConvert.SerializeObject(status));
+            await SendStatusToAllClients();
         }
 
+        private async Task SendStatusToAllClients() => await hubContext.Clients.All.SendAsync("IrrigationStatusUpdate", JsonConvert.SerializeObject(status));
+        
         private bool UpdateStatus(string btnName)
         {
             try
             {
+                if (btnName == shutDownButtonName)
+                {
+                    status = new IrrigationStatus();
+                    return true;
+                }
                 var btnValue = (bool)irrigationStatusType.GetProperty(btnName).GetValue(status);
                 btnValue = !btnValue;
                 irrigationStatusType.GetProperty(btnName).SetValue(status,btnValue);
