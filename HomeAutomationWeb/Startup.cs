@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HomeAutomationWeb.Hubs;
-using HomeAutomationWeb.Services.Irrigation;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace HomeAutomationWeb
 {
+    using HomeAutomationWeb.Hubs;
+    using HomeAutomationWeb.Services.Irrigation;
+    using HomeAutomationWeb.Services.Mqtt;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -28,6 +24,8 @@ namespace HomeAutomationWeb
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddSingleton<IrrigationService>();
+            services.AddSingleton<MqttProvider>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

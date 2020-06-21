@@ -1,69 +1,96 @@
-﻿    <div class="container">
+﻿<div class="container">
     <div class="row">
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveNW">NortWest</button>
-        </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveN">North</button>
-        </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveNE">NorthEast</button>
+        <div class="col">
+            <h3>Pumps</h3>
+            <p class="h4">
+                <span class="badge badge-success pump-sign" id="IrrigationPumpWell">Well</span>
+                <progress id="IrrigationPumpWellProgress" class="irrigation-progress mt-1" value="0" max="100"></progress>                
+            </p>
         </div>
     </div>
-    <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveW">West</button>
+        <div class="col">
+            <p class="h4">
+                <span class="badge badge-danger pump-sign" id="IrrigationPumpRetention">Retention</span>
+                <progress id="IrrigationPumpRetentionProgress" class="irrigation-progress mt-1" value="0" max="100"></progress>                
+            </p>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Valves</h3>
         </div>
-        <div class="col-sm">
-        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-outline-warning  btnIrrigation mx-2" id="IrrigationValveNW">NW</button>
+            <button type="button" class="btn btn-outline-warning  btnIrrigation mx-2" id="IrrigationValveN">N</button>
+            <button type="button" class="btn btn-outline-warning  btnIrrigation mx-2" id="IrrigationValveNE">NE</button>
 
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveSW">SouthWest</button>
-        </div>
-        <div class="col-sm">
-        </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="valveSE">SouthEast</button>
-        </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-sm">
-        </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="pumpWell">Pump Well</button>
-        </div>
-        <div class="col-sm">
         </div>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-sm">
+        <div class="col">
+
+            <button type="button" class="btn btn-outline-warning btnIrrigation mx-2" id="IrrigationValveW">W</button>
+            <ion-icon style="font-size:64px; vertical-align: middle;" name="home-outline"></ion-icon>
+
         </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-outline-warning btn-block btnIrrigation" id="pumpTank">Pump Tank</button>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+
+            <button type="button" class="btn btn-outline-warning btnIrrigation mx-2" id="IrrigationValveSW">SW</button>
+            <button type="button" class="btn btn-outline-warning btnIrrigation mx-2" id="IrrigationValveSE">SE</button>
         </div>
-        <div class="col-sm">
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col">
+            <h3>Controls</h3>
+        </div>
+    </div>    <div class="row">
+        <div class="col">
+            <div class="btn-group dropright" id="pumpDropDown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pump
+                </button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item irrigation-pump-type" type="button">Well</button>
+                    <button class="dropdown-item irrigation-pump-type" type="button">Retention</button>
+                </div>
+            </div>
+            <label for="pumpDropDown" class="mr-3" id="pumpLabel">Well</label>
+            <div class="btn-group dropright" id="timeDropDown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Time
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item irrigation-time-span" type="button">1</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">2</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">5</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">10</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">15</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">20</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">30</button>
+                    <button class="dropdown-item irrigation-time-span" type="button">60</button>
+                </div>
+            </div>
+            <label for="timeDropDown" class="mr-3" id="timeLabel">10</label>
+            <button type="button" class="btn btn-outline-danger btn-lg mr-5" id="IrrigationStart">Start</button>
         </div>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-sm">
-        </div>
-        <div class="col-sm">
-            <button type="button" class="btn btn-danger btn-block" id="shutDown">ShutDown</button>
-        </div>
-        <div class="col-sm">
+        <div class="col">
+            <button type="button" class="btn btn-outline-danger btn-lg" id="IrrigationStop">ShutDown</button>
         </div>
     </div>
+
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/EndUserSignalR.js"></script>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
